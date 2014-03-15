@@ -3,4 +3,5 @@ Todo::Application.routes.draw do
 
   post 'newtodo' => 'tasks#create'
   get 'new' => 'tasks#new'
+  post 'updatetodo' => 'tasks#update'
 end
