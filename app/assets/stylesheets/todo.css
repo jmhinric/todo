@@ -4,3 +4,35 @@ img {
   margin-left: 5px;
   margin-top: 3px;
 }
+
+.delete {
+  border-radius: 10px;
+  color: white;
+  background: red;
+  padding: 0 1px 0 1px;
+  line-height: 1em;
+  margin-left: 5px;
+}
+
+li {
+  line-height: 1.4em;
+}
+
+form {
+  display: block;
+  width: 375px;
+  margin-left: 100px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+h1 {
+  display: inline-block;
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+ul {
+  margin-left: 100px;
+}

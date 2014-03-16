@@ -4,7 +4,7 @@ describe "a user can interact with a todo" do
 	it "lets user create a todo", javascript: true do
 		
 		visit root_path
-		fill_in "New Todo:", with: "do your grammar homework"
+		fill_in "New To-Do:", with: "do your grammar homework"
 
 		click_button "Submit"
 
