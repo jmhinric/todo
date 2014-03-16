@@ -37,6 +37,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'jasmine'
   gem 'shoulda-matchers'
+  gem 'cucumber-rails'
+  gem 'selenium-webdriver'
 end
 
 gem 'pry-rails', :group => :development
