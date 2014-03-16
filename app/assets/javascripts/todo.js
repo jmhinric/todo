@@ -3,6 +3,7 @@ $(document).ready(function () {
   function addTodoLi(todoItem) {
     var liItem = $("<li>").text(todoItem.todo);
     var liInput = $("<input type='checkbox'>");
+    var link = $("<a><img src='http://icons.iconseeker.com/png/fullsize/refresh-cl/symbols-delete.png' alt='x' ></a>");
     if (todoItem.completed) {
       liItem.css("text-decoration", "line-through");
       liInput.attr("checked", true);
@@ -12,14 +13,15 @@ $(document).ready(function () {
     }
     liItem.append(liInput);
     liItem.addClass("checked-todo");
-    
+    liItem.append(link);
+    // liItem.append("<a>").text("<img src='http://icons.iconseeker.com/png/fullsize/refresh-cl/symbols-delete.png' alt='x' >");
     liItem.attr("id", todoItem.id).appendTo("ul");
   }
   // var todoFieldInput = $("input");
 
   $("form").submit(function(e) {
     e.preventDefault();
-    $.post("/newtodo", { todo: $("input").val() }, function(response) {
+    $.post("/tasks", { todo: $("input").val() }, function(response) {
       addTodoLi(response);
     });
     this.reset();
@@ -39,14 +41,23 @@ $(document).ready(function () {
       checkedBool = false;
     }
 
-    $.post("/updatetodo", { id: parentLi.id, completed: checkedBool });
+    $.ajax({
+      url: "/tasks/" + parentLi.id + "",
+      type: "patch",
+      data: { completed: checkedBool }
+    });
   });
 
-  $("li img").click(function(e) {
-    var todoImg = $(e.target);
+  $("ul").on("click", function(e) {
+    var todoLi = e.target.parentElement.parentElement;
+    $.ajax({
+      url: "/tasks/" + todoLi.id + "",
+      type: "delete",
+    });
+    todoLi.remove();
   });
 
-  $.getJSON("/new", function(response) {
+  $.getJSON("/tasks/new", function(response) {
     $.each(response, function(index, todoItem) {
       addTodoLi(todoItem);
     });

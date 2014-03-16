@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+  before_action :load_params, only: [:update, :destroy]
+
 	def index
 	end
 
@@ -13,10 +15,20 @@ class TasksController < ApplicationController
 	end
 
   def update
-    # binding.pry
-    @task = Task.find(params[:id].to_i)
+    # @task = Task.find(params[:id].to_i)
     @task.update(completed: params[:completed])
     render json: @task
+  end
+
+  def destroy
+    @task.destroy
+    render json: @task
+  end
+
+  private
+
+  def load_params
+    @task = Task.find(params[:id].to_i)
   end
 
 end
